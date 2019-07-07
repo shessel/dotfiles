@@ -98,6 +98,9 @@ let wiki_0.syntax = 'markdown'
 let wiki_0.ext = '.md'
 
 let g:vimwiki_list = [wiki_0]
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_folding = 'expr:quick'
+let g:vimwiki_global_ext = 0            "treat only files in vimwiki folders as vimwiki
 
 set number              " show line numbers
 set cursorline          " highlight current line
@@ -111,6 +114,8 @@ set smartcase           " use case sensitive search if an upper case character i
 
 set splitright          " splace splits on the right
 set relativenumber
+
+set foldmethod=syntax
 
 set scrolloff=5         " start scrolling 5 lines from margins
 
