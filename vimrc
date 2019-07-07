@@ -45,6 +45,8 @@ Plugin 'vimwiki/vimwiki'
 
 Plugin 'airblade/vim-gitgutter'
 
+Plugin 'junegunn/goyo.vim'
+
 Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
@@ -158,3 +160,4 @@ nnoremap <C-l> :bn<cr>
 nnoremap <leader>c :call CycleColorScheme()<cr>
 nnoremap <leader><space> :nohlsearch<cr>
 nnoremap <leader>t :NERDTreeToggle<cr>
+nnoremap <leader>g :Goyo<cr>
