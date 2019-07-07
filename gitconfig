@@ -1,0 +1,5 @@
+[user]
+    email = shessel@users.noreply.github.com
+    name = shessel
+[alias]
+    st = status -s
