@@ -1,13 +1,4 @@
 #!/bin/sh
-# DOTFILES=(
-#     config/sway/config
-#     config/termite/config
-#     bashrc
-#     gitconfig
-#     profile
-#     vimrc
-#     zshrc
-# )
 
 DIR=`dirname ${0}`
 ABS_DIR=`realpath $DIR`
