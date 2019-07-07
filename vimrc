@@ -25,20 +25,24 @@ Plugin 'gmarik/Vundle.vim'
 "" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 "" Avoid a name conflict with L9
 "" Plugin 'user/L9', {'name': 'newL9'}
-"
-Plugin 'octol/vim-cpp-enhanced-highlight'
+
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " LLVM based c++ auto complete
 Plugin 'Valloric/YouCompleteMe'
+" libclang based highlighting
 Plugin 'jeaye/color_coded'
 
 Plugin 'rust-lang/rust.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'vimwiki/vimwiki'
+
 Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
@@ -87,14 +91,6 @@ set expandtab           " expand tabs to spaces
 
 set hidden              " allow switching buffers without having to save first
 
-if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-endif
-
 " vimwiki configuration
 let wiki_0 = {}
 let wiki_0.path = '~/vimwiki/'
@@ -119,20 +115,35 @@ set relativenumber
 set scrolloff=5         " start scrolling 5 lines from margins
 
 set list listchars=tab:»-,trail:·,nbsp:· " Display extra whitespace
-autocmd filetype cpp nnoremap <F4> :w <bar> exec '!clang++ --std=c++17 '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-"autocmd filetype s nnoremap <F4> :w <bar> exec '!clang++ --std=c++17 '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-"swaymsg 'workspace 3; exec qemu-system-x86_64 ~/code/simple-os-from-scratch/ch03-boot-sector/addressing.bin'
-autocmd filetype * setlocal ts=4 sw=4 sts=4 expandtab
-autocmd filetype make setlocal ts=4 sw=4 sts=4 noexpandtab
-autocmd filetype asm setlocal syn=nasm
-autocmd filetype cpp setlocal ts=4 sw=4 sts=4 expandtab
-autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
-autocmd filetype python nnoremap <F5> :w <bar> exec '!python off.py'<CR><CR>
-autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
-autocmd filetype ruby setlocal ts=2 sw=2 sts=2 expandtab
-autocmd filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
-autocmd filetype html setlocal ts=2 sw=2 sts=2
-autocmd filetype rust setlocal ts=4 sw=4 sts=4
+
+if has("autocmd")
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)')) - 1
+  autocmd BufWinEnter * normal zR
+
+  autocmd filetype cpp nnoremap <F4> :w <bar> exec '!clang++ --std=c++17 '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+  "autocmd filetype s nnoremap <F4> :w <bar> exec '!clang++ --std=c++17 '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+  "swaymsg 'workspace 3; exec qemu-system-x86_64 ~/code/simple-os-from-scratch/ch03-boot-sector/addressing.bin'
+
+  autocmd filetype * setlocal ts=4 sw=4 sts=4 expandtab
+  autocmd filetype make setlocal ts=4 sw=4 sts=4 noexpandtab
+  autocmd filetype asm setlocal syn=nasm
+  autocmd filetype cpp setlocal ts=4 sw=4 sts=4 expandtab
+  autocmd filetype vimwiki setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+  autocmd filetype python nnoremap <F5> :w <bar> exec '!python off.py'<CR><CR>
+  autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
+  autocmd filetype ruby setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype html setlocal ts=2 sw=2 sts=2
+  autocmd filetype rust setlocal ts=4 sw=4 sts=4
+endif
+
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-h> :bp<cr>
