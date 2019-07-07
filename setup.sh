@@ -2,7 +2,7 @@
 
 DIR=`dirname ${0}`
 ABS_DIR=`realpath $DIR`
-DOTFILES=`find $DIR -type f -not -name setup.sh -printf "%P\n"`
+DOTFILES=`find $DIR -type f -not -path '*/.*' -not -name setup.sh -printf "%P\n"`
 
 for f in ${DOTFILES[*]}
 do
