@@ -4,7 +4,7 @@ DIR=`dirname ${0}`
 ABS_DIR=`realpath $DIR`
 DOTFILES=`find $DIR -type f -not -path '*/.*' -not -name setup.sh -printf "%P\n"`
 
-for f in ${DOTFILES[*]}
+for f in $DOTFILES
 do
     LINK_NAME="$HOME/.$f"
     if [ -e $LINK_NAME ]
