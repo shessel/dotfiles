@@ -3,3 +3,11 @@
     name = shessel
 [alias]
     st = status -s
+    l = log --oneline -n 20
+    ln = log --oneline -n
+    lg = log --oneline --graph
+    cor = checkout --no-track -b
+    cm = commit -m
+    cam = commit -am
+[difftool]
+    prompt = false

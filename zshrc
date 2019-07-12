@@ -39,7 +39,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias pacman='pacman --color=auto'
 
-. /usr/share/git/completion/git-prompt.sh
+# . /usr/share/git/completion/git-prompt.sh
+. ~/dotfiles/git-prompt.sh
+
 setopt prompt_subst
 # zle_highlight=(default:bold)
 autoload -U colors && colors # Enable colors in prompt

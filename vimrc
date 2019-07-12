@@ -2,67 +2,42 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 map <space> <leader>
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"" The following are examples of different formats supported.
-"" Keep Plugin commands between vundle#begin/end.
-"" plugin on GitHub repo
-"" Plugin 'tpope/vim-fugitive'
-"" plugin from http://vim-scripts.org/vim/scripts.html
-"" Plugin 'L9'
-"" Git plugin not hosted on GitHub
-"" Plugin 'git://git.wincent.com/command-t.git'
-"" git repos on your local machine (i.e. when working on your own plugin)
-"" Plugin 'file:///home/gmarik/path/to/plugin'
-"" The sparkup vim script is in a subdirectory of this repo called vim.
-"" Pass the path to set the runtimepath properly.
-"" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"" Avoid a name conflict with L9
-"" Plugin 'user/L9', {'name': 'newL9'}
+" Plug 'gmarik/Vundle.vim'
 
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " LLVM based c++ auto complete
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 " libclang based highlighting
-Plugin 'jeaye/color_coded'
+Plug 'jeaye/color_coded'
 
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plug 'flazz/vim-colorschemes'
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
+" filetype plugin indent on    " required
 "" To ignore plugin indent changes, instead use:
 ""filetype plugin on
-""
-"" Brief help
-"" :PluginList       - lists configured plugins
-"" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-"" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-"" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-""
-"" see :h vundle for more details or wiki for FAQ
-"" Put your non-Plugin stuff after this line
+
 "let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_rust_src_path="/home/Downloads/dev/rust-master/src/"
 let g:ycm_python_binary_path = 'python3'
@@ -110,11 +85,20 @@ set number              " show line numbers
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw only when needed
+"set ttyscroll=5
+"set t_ut=""
 set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight search matches
 set ignorecase          " case insensetive search
 set smartcase           " use case sensitive search if an upper case character is typed
+
+set autoindent          " automatically indent lines
+set smartindent
+" default settings for tabs
+set tabstop=4
+set softtabstop=4
+set expandtab
 
 set splitright          " splace splits on the right
 set relativenumber
@@ -144,14 +128,19 @@ if has("autocmd")
   autocmd filetype asm setlocal syn=nasm
   autocmd filetype cpp setlocal ts=4 sw=4 sts=4 expandtab
   autocmd filetype vimwiki setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype markdown setlocal ts=2 sw=2 sts=2 expandtab
   autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
   autocmd filetype python nnoremap <F5> :w <bar> exec '!python off.py'<CR><CR>
   autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
   autocmd filetype ruby setlocal ts=2 sw=2 sts=2 expandtab
   autocmd filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
-  autocmd filetype html setlocal ts=2 sw=2 sts=2
-  autocmd filetype rust setlocal ts=4 sw=4 sts=4
+  autocmd filetype html setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype rust setlocal ts=4 sw=4 sts=4 expandtab
 endif
+
+" save session (from help session)
+nmap <F2> :wa<Bar>exe "mksession! " . v:this_session<CR>:so ~/.vim/sessions/
+nmap <F3> :so ~/.vim/sessions/
 
 nnoremap j gj
 nnoremap k gk

@@ -2,9 +2,9 @@
 
 DIR=`dirname ${0}`
 ABS_DIR=`realpath $DIR`
-DOTFILES=`find $DIR -type f -not -name setup.sh -printf "%P\n"`
+DOTFILES=`find $DIR -not -path "*/\.*" -type f -not -name setup.sh -printf "%P\n"`
 
-for f in ${DOTFILES[*]}
+for f in $DOTFILES
 do
     LINK_NAME="$HOME/.$f"
     if [ -e $LINK_NAME ]
