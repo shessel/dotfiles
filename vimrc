@@ -144,6 +144,7 @@ if has("autocmd")
   autocmd filetype asm setlocal syn=nasm
   autocmd filetype cpp setlocal ts=4 sw=4 sts=4 expandtab
   autocmd filetype vimwiki setlocal ts=2 sw=2 sts=2 expandtab
+  autocmd filetype markdown setlocal ts=2 sw=2 sts=2 expandtab
   autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
   autocmd filetype python nnoremap <F5> :w <bar> exec '!python off.py'<CR><CR>
   autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
