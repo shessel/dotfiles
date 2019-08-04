@@ -33,8 +33,28 @@ output * bg $backgroundimage fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output HDMI-A-1 resolution 2560x1440 position 0,0
-output eDP-1 resolution 1920x1080 position 2560,0
+output HDMI-A-1 {
+    # scale 2.0
+    resolution 2560x1440
+    position 0,0
+}
+
+output eDP-1 {
+    # scale 1.25
+    resolution 1920x1080
+    position 2560,0
+}
+
+workspace 1 output HDMI-A-1 eDP-1
+workspace 2 output eDP-1
+workspace 3 output HDMI-A-1 eDP-1
+workspace 4 output eDP-1
+workspace 5 output HDMI-A-1 eDP-1
+workspace 6 output eDP-1
+workspace 7 output HDMI-A-1 eDP-1
+workspace 8 output eDP-1
+workspace 9 output HDMI-A-1 eDP-1
+workspace 10 output eDP-1
 
 ### Input configuration
 #
@@ -219,17 +239,23 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+set $transparency aa
 bar {
+    # status_command expects a continuous stream of data so loop
+    status_command while ~/test.sh; do sleep 1; done
+    # status_command ~/test.sh #
+    mode hide
     position bottom
+    font pango:System San Francisco Display 12
     colors {
         separator $base03
-        background $base01
+        background $base01$transparency
         statusline $base05
-#                          border  background text
-        focused_workspace  $base01 $base01    $base07
-        active_workspace   $base01 $base02    $base03
-        inactive_workspace $base01 $base01    $base03
-        urgent_workspace   $base01 $base01    $base08
+#                          border  background             text
+        focused_workspace  $base01 $base01$transparency   $base07
+        active_workspace   $base01 $base02$transparency   $base03
+        inactive_workspace $base01 $base01$transparency   $base03
+        urgent_workspace   $base01 $base01$transparency   $base08
     }
 }
 
