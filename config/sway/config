@@ -274,6 +274,9 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Hide cursor when inactive
+seat * hide_cursor 1000
+
 # bindsym XF86Sleep exec swaylock --color "$base01" && systemctl suspend
 # bindsym $mod+Shift+x exec swaylock --image $backgroundimage --ringcolor $base02 --insidecolor $base01 --keyhlcolor $base03 --textcolor $base07
 bindsym $mod+Shift+x exec swaylock --image $backgroundimage --scaling fill --no-unlock-indicator
